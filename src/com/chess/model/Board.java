@@ -1,5 +1,20 @@
+package com.chess.model;
+
 public class Board
 {
+    private Piece[][] grid =
+        {
+            {new Rook(Side.BLACK, new Position(0, 0)), new Knight(Side.BLACK, new Position(0, 1)), new Bishop(Side.BLACK, new Position(0, 2)), new Queen(Side.BLACK, new Position(0, 3)), new King(Side.BLACK, new Position(0, 4)), new Bishop(Side.BLACK, new Position(0, 5)), new Knight(Side.BLACK, new Position(0, 6)), new Rook(Side.BLACK, new Position(0, 7))},
+            {new Pawn(Side.BLACK, new Position(0, 0)), new Pawn(Side.BLACK, new Position(0, 1)), new Pawn(Side.BLACK, new Position(0, 2)), new Pawn(Side.BLACK, new Position(0, 3)), new Pawn(Side.BLACK, new Position(0, 4)), new Pawn(Side.BLACK, new Position(0, 5)), new Pawn(Side.BLACK, new Position(0, 6)), new Pawn(Side.BLACK, new Position(0, 7))},
+            {null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null},
+            {new Pawn(Side.WHITE, new Position(0, 0)), new Pawn(Side.WHITE, new Position(0, 1)), new Pawn(Side.WHITE, new Position(0, 2)), new Pawn(Side.WHITE, new Position(0, 3)), new Pawn(Side.WHITE, new Position(0, 4)), new Pawn(Side.WHITE, new Position(0, 5)), new Pawn(Side.WHITE, new Position(0, 6)), new Pawn(Side.WHITE, new Position(0, 7))},
+            {new Rook(Side.WHITE, new Position(0, 0)), new Knight(Side.WHITE, new Position(0, 1)), new Bishop(Side.WHITE, new Position(0, 2)), new Queen(Side.WHITE, new Position(0, 3)), new King(Side.WHITE, new Position(0, 4)), new Bishop(Side.WHITE, new Position(0, 5)), new Knight(Side.WHITE, new Position(0, 6)), new Rook(Side.WHITE, new Position(0, 7))}
+        };
+
+
     //should be private because other classes have no job interfering with it
     private final char[][] start = {
             {'r','n','b','q','k','b','n','r'},

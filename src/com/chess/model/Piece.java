@@ -1,9 +1,11 @@
+package com.chess.model;
+
 public abstract class Piece
 {
-    private PlayerColor color;
-    private Position position;
+    protected final Side color;
+    protected Position position;
 
-    public Piece(PlayerColor color, Position position)
+    public Piece(Side color, Position position)
     {
         this.color = color;
         this.position = position;
@@ -14,14 +16,19 @@ public abstract class Piece
         this.position = newposition;
     }
 
-    public PlayerColor getColor()
+    public Side getColor()
     {
-        return color;
+        return this.color;
     }
 
     public Position getPosition()
     {
-        return position;
+        return this.position;
+    }
+
+    public boolean isCaptured()
+    {
+        return this.position == null;
     }
 
     public abstract boolean isValidMove(Position from, Position to, Board board);

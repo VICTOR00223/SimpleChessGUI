@@ -1,6 +1,8 @@
+package com.chess.model;
+
 public class Pawn extends Piece
 {
-    public Pawn(PlayerColor color, Position position)
+    public Pawn(Side color, Position position)
     {
         super(color, position);
     }
@@ -12,7 +14,7 @@ public class Pawn extends Piece
         // Starting row for double-move
         int direction;
         int startRow;
-        if(getColor() == PlayerColor.WHITE)
+        if(getColor() == Side.WHITE)
         {
             direction = -1;
             startRow = 6;

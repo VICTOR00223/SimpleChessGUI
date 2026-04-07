@@ -1,10 +1,11 @@
-public class Knight extends Piece
+package com.chess.model;
+
+public class King extends Piece
 {
-    public Knight(PlayerColor color, Position position)
+    public King(Side color, Position position)
     {
         super(color, position);
     }
-
 
     @Override
     public boolean isValidMove(Position from, Position to, Board board)
@@ -12,9 +13,9 @@ public class Knight extends Piece
         int rowDif = Math.abs(to.getRow()-from.getRow());
         int colDif = Math.abs(to.getCol()-from.getCol());
 
-        if(Math.abs(rowDif-colDif) == 1)
+        if ((rowDif <= 1) && (colDif <= 1))
         {
-            if(board.getPiece(to.getRow(), to.getCol()) == null || board.getPiece(to.getRow(), to.getCol()).getColor() != getColor())
+            if (board.getPiece(to.getRow(), to.getCol()) == null || board.getPiece(to.getRow(), to.getCol()).getColor() != getColor())
             {
                 return true;
             }

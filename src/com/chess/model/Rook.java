@@ -1,6 +1,8 @@
-public class Bishop extends Piece
+package com.chess.model;
+
+public class Rook extends Piece
 {
-    public Bishop(PlayerColor color, Position position)
+    public Rook(Side color, Position position)
     {
         super(color, position);
     }
@@ -8,14 +10,18 @@ public class Bishop extends Piece
     @Override
     public boolean isValidMove(Position from, Position to, Board board)
     {
-        //---Check if diagonal---
-        int rowDif = Math.abs(to.getRow()-from.getRow());
-        int colDif = Math.abs(to.getCol()-from.getCol());
-
-        if(rowDif != colDif)
+        if (from.getRow() != to.getRow() && from.getCol() != to.getCol())
         {
             return false;
         }
+
+        /*
+        Integer.compare(a, b)
+        condition
+            a<b  return -1
+            a==b return 0
+            a>b  return 1
+         */
 
         //---find direction---
         int rowStep = Integer.compare(to.getRow(), from.getRow());
@@ -24,11 +30,10 @@ public class Bishop extends Piece
         int r = from.getRow() + rowStep;
         int c = from.getCol() + colStep;
 
-
         //---Check if squares are empty---
         while (r != to.getRow() || c != to.getCol())
         {
-            if(board.getPiece(r, c) != null)
+            if (board.getPiece(r, c) != null)
             {
                 return false;
             }
@@ -47,3 +52,5 @@ public class Bishop extends Piece
         }
     }
 }
+
+

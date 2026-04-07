@@ -1,6 +1,8 @@
+package com.chess.model;
+
 public class Queen extends Piece
 {
-    public Queen(PlayerColor color, Position position)
+    public Queen(Side color, Position position)
     {
         super(color, position);
     }
@@ -13,7 +15,7 @@ public class Queen extends Piece
 
         if((rowDif == colDif) || (rowDif == 0) || (colDif == 0))
         {
-            //Bishop and Rook move
+            //com.chess.model.Bishop and com.chess.model.Rook move
 
             //---find direction---
             int rowStep = Integer.compare(to.getRow(), from.getRow());

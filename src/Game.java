@@ -1,3 +1,7 @@
+import com.chess.model.Board;
+import com.chess.model.PlayerColor;
+import com.chess.model.Position;
+
 public class Game
 {
 
@@ -16,8 +20,7 @@ public class Game
         {
             currentTurn = PlayerColor.BLACK;
         }
-        else
-        {
+        else {
             currentTurn = PlayerColor.WHITE;
         }
     }
