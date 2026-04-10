@@ -10,6 +10,10 @@ public class Rook extends Piece
     @Override
     public boolean isValidMove(Position from, Position to, Board board)
     {
+        if(from.equals(to))
+        {
+            return false;
+        }
         if (from.getRow() != to.getRow() && from.getCol() != to.getCol())
         {
             return false;
@@ -33,7 +37,8 @@ public class Rook extends Piece
         //---Check if squares are empty---
         while (r != to.getRow() || c != to.getCol())
         {
-            if (board.getPiece(r, c) != null)
+            Position now = new Position(r, c);
+            if (board.getPiece(now) != null)
             {
                 return false;
             }
@@ -42,7 +47,7 @@ public class Rook extends Piece
         }
 
         //---Check if target square is empty or capture---
-        if(board.getPiece(to.getRow(), to.getCol()) == null || board.getPiece(to.getRow(), to.getCol()).getColor() != getColor())
+        if(board.getPiece(to) == null || board.getPiece(to).getColor() != this.getColor())
         {
             return true;
         }

@@ -10,6 +10,10 @@ public class Bishop extends Piece
     @Override
     public boolean isValidMove(Position from, Position to, Board board)
     {
+        if(from.equals(to))
+        {
+            return false;
+        }
         //---Check if diagonal---
         int rowDif = Math.abs(to.getRow()-from.getRow());
         int colDif = Math.abs(to.getCol()-from.getCol());
@@ -30,7 +34,8 @@ public class Bishop extends Piece
         //---Check if squares are empty---
         while (r != to.getRow() || c != to.getCol())
         {
-            if(board.getPiece(r, c) != null)
+            Position now = new Position(r, c);
+            if(board.getPiece(now) != null)
             {
                 return false;
             }
@@ -39,7 +44,7 @@ public class Bishop extends Piece
         }
 
         //---Check if target square is empty or capture---
-        if(board.getPiece(to.getRow(), to.getCol()) == null || board.getPiece(to.getRow(), to.getCol()).getColor() != getColor())
+        if(board.getPiece(to) == null || board.getPiece(to).getColor() != this.getColor())
         {
             return true;
         }

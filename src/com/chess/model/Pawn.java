@@ -10,11 +10,16 @@ public class Pawn extends Piece
     @Override
     public boolean isValidMove(Position from, Position to, Board board)
     {
+        if(from.equals(to))
+        {
+            return false;
+        }
+
         // White moves up (-1), Black moves down (+1)
         // Starting row for double-move
         int direction;
         int startRow;
-        if(getColor() == Side.WHITE)
+        if(this.getColor() == Side.WHITE)
         {
             direction = -1;
             startRow = 6;
@@ -25,30 +30,30 @@ public class Pawn extends Piece
             startRow = 1;
         }
 
-        //---One Forward---
-        if(to.getCol() == from.getCol() && to.getRow() == from.getRow() + direction)
+        if(board.getPiece(to) == null)
         {
-            if(board.getPiece(to.getRow(), to.getCol()) == null)
+            //---One Forward---
+            if(to.getCol() == from.getCol() && to.getRow() == from.getRow() + direction)
             {
                 return true;
             }
-        }
-
-        //---Two Forward---
-        if(to.getCol() == from.getCol() && to.getRow() == from.getRow() + 2*direction && from.getRow() == startRow)
-        {
-            if(board.getPiece(from.getRow()+direction, from.getCol()) == null && board.getPiece(to.getRow(), to.getCol()) == null)
+            //---Two Forward---
+            if(to.getCol() == from.getCol() && to.getRow() == from.getRow() + 2*direction && from.getRow() == startRow)
             {
-                return true;
+                Position oneforward = new Position(from.getRow() + direction, from.getCol());
+                if(board.getPiece(oneforward) == null)
+                {
+                    return true;
+                }
             }
         }
-
-        //---Capture---
-        if(board.getPiece(to.getRow(), to.getCol()) != null)
+        else
         {
-            if(to.getRow() == from.getRow()+direction && (to.getCol() == from.getCol() + 1 || to.getCol() == from.getCol() - 1))
+            //---Capture---
+            int colDif = Math.abs(from.getCol() - to.getCol());
+            if(to.getRow() == from.getRow()+direction && colDif == 1)
             {
-                if(board.getPiece(to.getRow(), to.getCol()).getColor() != getColor())
+                if(this.getColor() != board.getPiece(to).getColor())
                 {
                     return true;
                 }

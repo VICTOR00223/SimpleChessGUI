@@ -8,8 +8,17 @@ public class Position
 
     public Position(int r, int c)
     {
+        if (!isValid(r, c))
+        {
+            throw new IllegalArgumentException("Out of bounds!");
+        }
         this.row = r;
         this.col = c;
+    }
+
+    public static boolean isValid(int r, int c)
+    {
+        return r >= 0 && r < 8 && c >= 0 && c < 8;
     }
 
     public int getRow() {

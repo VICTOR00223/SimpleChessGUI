@@ -1,22 +1,12 @@
 package com.chess.model;
 
+import static com.chess.model.Position.isValid;
+
 public class Board
 {
-    private Piece[][] grid =
-        {
-            {new Rook(Side.BLACK, new Position(0, 0)), new Knight(Side.BLACK, new Position(0, 1)), new Bishop(Side.BLACK, new Position(0, 2)), new Queen(Side.BLACK, new Position(0, 3)), new King(Side.BLACK, new Position(0, 4)), new Bishop(Side.BLACK, new Position(0, 5)), new Knight(Side.BLACK, new Position(0, 6)), new Rook(Side.BLACK, new Position(0, 7))},
-            {new Pawn(Side.BLACK, new Position(0, 0)), new Pawn(Side.BLACK, new Position(0, 1)), new Pawn(Side.BLACK, new Position(0, 2)), new Pawn(Side.BLACK, new Position(0, 3)), new Pawn(Side.BLACK, new Position(0, 4)), new Pawn(Side.BLACK, new Position(0, 5)), new Pawn(Side.BLACK, new Position(0, 6)), new Pawn(Side.BLACK, new Position(0, 7))},
-            {null, null, null, null, null, null, null, null},
-            {null, null, null, null, null, null, null, null},
-            {null, null, null, null, null, null, null, null},
-            {null, null, null, null, null, null, null, null},
-            {new Pawn(Side.WHITE, new Position(0, 0)), new Pawn(Side.WHITE, new Position(0, 1)), new Pawn(Side.WHITE, new Position(0, 2)), new Pawn(Side.WHITE, new Position(0, 3)), new Pawn(Side.WHITE, new Position(0, 4)), new Pawn(Side.WHITE, new Position(0, 5)), new Pawn(Side.WHITE, new Position(0, 6)), new Pawn(Side.WHITE, new Position(0, 7))},
-            {new Rook(Side.WHITE, new Position(0, 0)), new Knight(Side.WHITE, new Position(0, 1)), new Bishop(Side.WHITE, new Position(0, 2)), new Queen(Side.WHITE, new Position(0, 3)), new King(Side.WHITE, new Position(0, 4)), new Bishop(Side.WHITE, new Position(0, 5)), new Knight(Side.WHITE, new Position(0, 6)), new Rook(Side.WHITE, new Position(0, 7))}
-        };
-
 
     //should be private because other classes have no job interfering with it
-    private final char[][] start = {
+    private static final char[][] START_LAYOUT = {
             {'r','n','b','q','k','b','n','r'},
             {'p','p','p','p','p','p','p','p'},
             {'.','.','.','.','.','.','.','.'},
@@ -27,55 +17,55 @@ public class Board
             {'R','N','B','Q','K','B','N','R'}
     }; // starting positions
 
-    private Piece[][] board = new Piece[8][8];
+    private Piece[][] grid = new Piece[8][8];
 
 
     public Board()
+    {
+        initializeFromLayout();
+    }
+
+    private void initializeFromLayout()
     {
         for(int i=0; i<8; i++)
         {
             for(int j=0; j<8; j++)
             {
-                char c = start[i][j];
+                char c = START_LAYOUT[i][j];
                 Position pos = new Position(i, j);
 
-                if(c == '.')
+                if(c != '.')
                 {
-                    board[i][j] = null;
-                }
-                else
-                {
-                    PlayerColor color;
-                    if (Character.isUpperCase(c))
+                    Side color;
+                    if(Character.isUpperCase(c))
                     {
-                        color = PlayerColor.WHITE;
+                        color = Side.WHITE;
                     }
                     else
                     {
-                        color = PlayerColor.BLACK;
+                        color = Side.BLACK;
                     }
-
                     char pieceChar = Character.toLowerCase(c);
 
                     switch (pieceChar)
                     {
                         case 'p':
-                            board[i][j] = new Pawn(color, pos);
+                            this.grid[i][j] = new Pawn(color, pos);
                             break;
                         case 'r':
-                            board[i][j] = new Rook(color, pos);
+                            this.grid[i][j] = new Rook(color, pos);
                             break;
                         case 'n':
-                            board[i][j] = new Knight(color, pos);
+                            this.grid[i][j] = new Knight(color, pos);
                             break;
                         case 'b':
-                            board[i][j] = new Bishop(color, pos);
+                            this.grid[i][j] = new Bishop(color, pos);
                             break;
                         case 'q':
-                            board[i][j] = new Queen(color, pos);
+                            this.grid[i][j] = new Queen(color, pos);
                             break;
                         case 'k':
-                            board[i][j] = new King(color, pos);
+                            this.grid[i][j] = new King(color, pos);
                             break;
                     }
                 }
@@ -83,8 +73,14 @@ public class Board
         }
     }
 
-    public Piece getPiece(int r, int c)
+
+
+    public Piece getPiece(Position pos)
     {
-        return board[r][c];
+        return this.grid[pos.getRow()][pos.getCol()];
+    }
+    public void setPiece(Position pos, Piece piece)
+    {
+        this.grid[pos.getRow()][pos.getCol()] = piece;
     }
 }

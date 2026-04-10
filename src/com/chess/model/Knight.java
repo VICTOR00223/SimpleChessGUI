@@ -11,12 +11,16 @@ public class Knight extends Piece
     @Override
     public boolean isValidMove(Position from, Position to, Board board)
     {
+        if(from.equals(to))
+        {
+            return false;
+        }
         int rowDif = Math.abs(to.getRow()-from.getRow());
         int colDif = Math.abs(to.getCol()-from.getCol());
 
-        if(Math.abs(rowDif-colDif) == 1)
+        if(rowDif * colDif == 2)
         {
-            if(board.getPiece(to.getRow(), to.getCol()) == null || board.getPiece(to.getRow(), to.getCol()).getColor() != getColor())
+            if(board.getPiece(to) == null || board.getPiece(to).getColor() != this.getColor())
             {
                 return true;
             }
