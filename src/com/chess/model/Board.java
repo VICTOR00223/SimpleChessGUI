@@ -16,6 +16,7 @@ public class Board
             {'P','P','P','P','P','P','P','P'},
             {'R','N','B','Q','K','B','N','R'}
     }; // starting positions
+    //the cell (0,0) should be white
 
     private Piece[][] grid = new Piece[8][8];
 
