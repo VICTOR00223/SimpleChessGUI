@@ -79,8 +79,25 @@ public class Board
     {
         return this.grid[pos.getRow()][pos.getCol()];
     }
+
     public void setPiece(Position pos, Piece piece)
     {
         this.grid[pos.getRow()][pos.getCol()] = piece;
     }
+
+    public void executeMove(Position from, Position to)
+    {
+        // 1. Move the piece to the new spot in the grid
+        setPiece(to, this.getPiece(from));
+
+        // 2. Clear the old spot
+        setPiece(from, null);
+
+        // This ensures piece.getPosition() stays in sync with the board grid
+        if (this.getPiece(to) != null)
+        {
+            this.getPiece(to).setPosition(to);
+        }
+    }
 }
+
