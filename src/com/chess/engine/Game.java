@@ -40,15 +40,14 @@ public class Game
         if(board.getPiece(to) instanceof King)
         {
             this.gameActive = false;
+            return true;
         }
 
         // 3. The Execution (The "Doer")
-        board.executeMove(from, to);
+        this.board.executeMove(from, to);
 
-        if (this.gameActive)
-        {
-            this.currentTurn = (this.currentTurn == Side.WHITE) ? Side.BLACK : Side.WHITE;
-        }
+        // 4. Switch turns
+        this.currentTurn = (this.currentTurn == Side.WHITE) ? Side.BLACK : Side.WHITE;//switch turns
         return true;
     }
 

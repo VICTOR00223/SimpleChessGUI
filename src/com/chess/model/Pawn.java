@@ -61,4 +61,10 @@ public class Pawn extends Piece
         }
         return false;
     }
+
+    @Override
+    public String getIcon()
+    {
+        return (this.color == Side.WHITE) ? "♙" : "♟";
+    }
 }

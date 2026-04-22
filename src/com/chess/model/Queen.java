@@ -54,4 +54,10 @@ public class Queen extends Piece
             return false;
         }
     }
+
+    @Override
+    public String getIcon()
+    {
+        return (this.color == Side.WHITE) ? "♕" : "♛";
+    }
 }

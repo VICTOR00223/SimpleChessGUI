@@ -51,22 +51,22 @@ public class Board
                     switch (pieceChar)
                     {
                         case 'p':
-                            this.grid[i][j] = new Pawn(color, pos);
+                            this.setPiece(pos, new Pawn(color, pos));
                             break;
                         case 'r':
-                            this.grid[i][j] = new Rook(color, pos);
+                            this.setPiece(pos, new Rook(color, pos));
                             break;
                         case 'n':
-                            this.grid[i][j] = new Knight(color, pos);
+                            this.setPiece(pos, new Knight(color, pos));
                             break;
                         case 'b':
-                            this.grid[i][j] = new Bishop(color, pos);
+                            this.setPiece(pos, new Bishop(color, pos));
                             break;
                         case 'q':
-                            this.grid[i][j] = new Queen(color, pos);
+                            this.setPiece(pos, new Queen(color, pos));
                             break;
                         case 'k':
-                            this.grid[i][j] = new King(color, pos);
+                            this.setPiece(pos, new King(color, pos));
                             break;
                     }
                 }
@@ -75,12 +75,13 @@ public class Board
     }
 
 
-
+    //Look the piece in a specific position
     public Piece getPiece(Position pos)
     {
         return this.grid[pos.getRow()][pos.getCol()];
     }
 
+    //Put a piece in a specific position
     public void setPiece(Position pos, Piece piece)
     {
         this.grid[pos.getRow()][pos.getCol()] = piece;

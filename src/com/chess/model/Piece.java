@@ -32,4 +32,6 @@ public abstract class Piece
     }
 
     public abstract boolean isValidMove(Position from, Position to, Board board);
+
+    public abstract String getIcon();
 }

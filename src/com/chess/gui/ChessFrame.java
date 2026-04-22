@@ -1,24 +1,39 @@
 package com.chess.gui;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 import java.awt.BorderLayout;
 import com.chess.engine.Game;
 
 public class ChessFrame extends JFrame
 {
-    public ChessFrame(Game game)
+    private BoardPanel boardPanel;
+    private JLabel statusLabel;
+
+    public ChessFrame()
     {
-        // 1. Basic Window Settings
-        setTitle("Chess Game");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Stops the program when 'X' is clicked
-        setSize(800, 800); // A good size for a square board
-        setLayout(new BorderLayout()); // Helps us put the board in the center
-        setLocationRelativeTo(null); // Centers the window on your screen
+        // 1. Basic Window Setup
+        this.setTitle("Chess Game");
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLayout(new BorderLayout());//It is needed to put the title in the north, the board in the center
 
-        // 2. This is where we will eventually add the BoardPanel
-        // For now, it's just an empty shell
+        // 2. The Announcer
+        this.statusLabel = new JLabel("White's Turn", SwingConstants.CENTER);
+        this.add(this.statusLabel, BorderLayout.NORTH);
 
-        // 3. Make it visible
-        setVisible(true);
+        // 2. Create the Board and "Plug in" this frame
+        this.boardPanel = new BoardPanel(this);//connects the boardpanel with the frame
+
+        // 3. Add the board to the window
+        this.add(this.boardPanel, BorderLayout.CENTER);//connects the frame with the boardpanel and put's it in the middle
+
+        // 4. Finalize visual appearance
+        this.pack(); // Adjusts window size to fit the 8x8 grid perfectly
+        this.setLocationRelativeTo(null); // Centers the window on your screen
+        this.setVisible(true);
+    }
+
+    public void updateStatus(String message)
+    {
+        this.statusLabel.setText(message);
     }
 }
