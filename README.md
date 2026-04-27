@@ -11,3 +11,6 @@ The game emphasizes clarity and simplicity, ensuring that the core "move and cap
  - Complete Piece Logic: All pieces (Pawns, Rooks, Knights, Bishops, Queens, and Kings) move and capture according to their standard horizontal, vertical, and diagonal rules.
  - Visual Feedback: An interactive Graphical User Interface (GUI) that allows for easy piece selection and movement via mouse clicks.
  - Win Condition: The game tracks the life of the Kings. Once a King is captured, the game displays the winner in the window title and concludes the session.
+
+# 🚀 How to Play
+
