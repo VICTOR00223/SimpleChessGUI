@@ -33,6 +33,8 @@ public class BoardPanel extends JPanel
                 JButton button = new JButton();//each square has it's button object
                 Position buttonPos = new Position(i, j);
 
+                //Set size and font for text
+                button.setFont(new Font("SansSerif", Font.PLAIN, 60));
                 // Color the square
                 if ((i + j) % 2 == 0)
                 {
