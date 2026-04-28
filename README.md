@@ -17,3 +17,7 @@ The game emphasizes clarity and simplicity, ensuring that the core "move and cap
  - Go to the [Releases] section on the right side of this page.
  - Download the ChessGame.exe file from the latest release.
  - (Optional) If you don't have Java installed, you may need to download the Java Runtime Environment.
+
+## 2. Launching the Game ##
+ - Double-click ChessGame.exe.
+ - The game window will open, displaying the chess board and pieces.
