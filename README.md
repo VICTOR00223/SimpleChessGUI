@@ -13,7 +13,7 @@ The game emphasizes clarity and simplicity, ensuring that the core "move and cap
  - Win Condition: The game tracks the life of the Kings. Once a King is captured, the game displays the winner in the window title and concludes the session.
 
 # 🚀 How to Play
-# 1. Installation
+## 1. Installation ##
  - Go to the [Releases] section on the right side of this page.
  - Download the ChessGame.exe file from the latest release.
  - (Optional) If you don't have Java installed, you may need to download the Java Runtime Environment.
