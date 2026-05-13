@@ -69,7 +69,7 @@ public class BoardPanel extends JPanel
         if(this.click1 == null)
         {
             //2.1. Check if the user actually selected a position with a piece
-            if (game.getPiece(position) != null)
+            if (this.game.getPiece(position) != null)
             {
                 this.click1 = position;
                 // Highlight the selection
@@ -79,13 +79,16 @@ public class BoardPanel extends JPanel
         else//3. Check if this is the 2nd click
         {
             //3.1. Check if the move is valid
-            if(this.game.makeMove(click1, position))
+            if(this.game.isMoveLegal(click1, position))
             {
-                // The move was successful! Check the state of the game:
+                //3.2 Execute the move
+                this.game.MakeMove(click1, position);//The turn switches
+
+                //3.3 Check the state of the game:
                 if(!this.game.isGameActive())
                 {
                     //Announce the winner
-                    String winner = (this.game.getCurrentTurn() == Side.WHITE) ? "White" : "Black";
+                    String winner = (this.game.getOppositeTurn() == Side.WHITE) ? "White" : "Black";
                     this.frame.updateStatus("Game Over! " + winner + " won!");
                 }
                 else
@@ -110,7 +113,7 @@ public class BoardPanel extends JPanel
             {
                 Piece p = this.game.getPiece(new Position(i, j));
 
-                // 1. Update the Icon
+                // 1. Updates the Icon
                 this.squares[i][j].setText(p != null ? p.getIcon() : "");
 
                 // 2. Update the Color (The "Automatic Reset")

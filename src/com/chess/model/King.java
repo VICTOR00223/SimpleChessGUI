@@ -17,6 +17,7 @@ public class King extends Piece
         int rowDif = Math.abs(to.getRow()-from.getRow());
         int colDif = Math.abs(to.getCol()-from.getCol());
 
+        // General move
         if ((rowDif <= 1) && (colDif <= 1))
         {
             if (board.getPiece(to) == null || board.getPiece(to).getColor() != this.getColor())
@@ -24,6 +25,21 @@ public class King extends Piece
                 return true;
             }
         }
+
+        //Castling
+        if (rowDif == 0)
+        {
+            //Right Castling
+            if(to.getCol() > from.getCol())
+            {
+
+            }
+            else
+            {
+
+            }
+        }
+
         return false;
     }
 

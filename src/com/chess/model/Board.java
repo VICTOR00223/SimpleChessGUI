@@ -74,7 +74,6 @@ public class Board
         }
     }
 
-
     //Look the piece in a specific position
     public Piece getPiece(Position pos)
     {
@@ -90,16 +89,32 @@ public class Board
     public void executeMove(Position from, Position to)
     {
         // 1. Move the piece to the new spot in the grid
-        setPiece(to, this.getPiece(from));
+        this.setPiece(to, this.getPiece(from));
 
         // 2. Clear the old spot
-        setPiece(from, null);
+        this.setPiece(from, null);
 
         // This ensures piece.getPosition() stays in sync with the board grid
         if (this.getPiece(to) != null)
         {
             this.getPiece(to).setPosition(to);
         }
+    }
+
+    public Position findKing(Side color)
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            for (int j = 0; j < 8; j++)
+            {
+                Piece p = this.grid[i][j];
+                if (p instanceof King && p.getColor() == color)
+                {
+                    return new Position(i, j);
+                }
+            }
+        }
+        return null; // For safety.
     }
 }
 

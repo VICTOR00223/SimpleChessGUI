@@ -20,13 +20,13 @@ public class ChessFrame extends JFrame
         this.statusLabel = new JLabel("White's Turn", SwingConstants.CENTER);
         this.add(this.statusLabel, BorderLayout.NORTH);
 
-        // 2. Create the Board and "Plug in" this frame
+        // 3. Create the Board and "Plug in" this frame
         this.boardPanel = new BoardPanel(this);//connects the boardpanel with the frame
 
-        // 3. Add the board to the window
+        // 4. Add the board to the window
         this.add(this.boardPanel, BorderLayout.CENTER);//connects the frame with the boardpanel and put's it in the middle
 
-        // 4. Finalize visual appearance
+        // 5. Finalize visual appearance
         this.pack(); // Adjusts window size to fit the 8x8 grid perfectly
         this.setLocationRelativeTo(null); // Centers the window on your screen
         this.setVisible(true);

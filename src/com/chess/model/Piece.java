@@ -4,11 +4,13 @@ public abstract class Piece
 {
     protected final Side color;
     protected Position position;
+    private boolean hasMoved;
 
     public Piece(Side color, Position position)
     {
         this.color = color;
         this.position = position;
+        this.hasMoved = false;
     }
 
     public void setPosition(Position newposition)
@@ -34,4 +36,8 @@ public abstract class Piece
     public abstract boolean isValidMove(Position from, Position to, Board board);
 
     public abstract String getIcon();
+
+    public boolean hasMoved() { return this.hasMoved; }
+
+    public void setHasMoved(boolean hasMoved) { this.hasMoved = hasMoved; }
 }
