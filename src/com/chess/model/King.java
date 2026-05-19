@@ -27,19 +27,54 @@ public class King extends Piece
         }
 
         //Castling
-        if (rowDif == 0)
+        if (rowDif == 0 && colDif == 2)
         {
-            //Right Castling
-            if(to.getCol() > from.getCol())
-            {
+            //---find direction---
+            int rowStep = Integer.compare(to.getRow(), from.getRow());// Should be 0
+            int colStep = Integer.compare(to.getCol(), from.getCol());
 
+            int r = from.getRow() + rowStep;
+            int c = from.getCol() + colStep;
+
+            //---Check if squares are empty---
+            while (r != to.getRow() || c != to.getCol())
+            {
+                Position now = new Position(r, c);
+                if (board.getPiece(now) != null)
+                {
+                    return false;
+                }
+                r += rowStep;
+                c += colStep;
             }
-            else
-            {
 
+            //Check if they have ever moved
+            if(!this.hasMoved())
+            {
+                Piece rook;
+                if(from.getRow() == 0 && colStep == 1)//Black King, right castling
+                {
+                    rook = board.getPiece(new Position(0, 7));
+                }
+                else if(from.getRow() == 0 && colStep == -1)//Black King, left castling
+                {
+                    rook = board.getPiece(new Position(0, 0));
+                }
+                else if(from.getRow() == 7 && colStep == 1)//White King, right castling
+                {
+                    rook = board.getPiece(new Position(7, 7));
+                }
+                else //White King, left castling, if(from.getRow() == 7 && colStep == -1)
+                {
+                    rook = board.getPiece(new Position(7, 0));
+                }
+
+                if (rook != null && !rook.hasMoved())
+                {
+                    return true;
+                }
             }
         }
-
         return false;
     }
 

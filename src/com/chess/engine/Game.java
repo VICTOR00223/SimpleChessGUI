@@ -36,7 +36,6 @@ public class Game
     {
         //This method will be inside the isMoveLegal and the isCheckmate method.
         //This method will be used to check if the King is unsafe
-        //This method cannot run unless this.board.getPiece(targetPos) instanceof King
         for (int i = 0; i < 8; i++)
         {
             for (int j = 0; j < 8; j++)
